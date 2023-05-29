@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<body>
+<div th:each="unapprovedUser: ${unapprovedUsers}">
+    <p th:text="${unapprovedUser.name}"></p>
+    <p th:text="${unapprovedUser.team}"></p>
+
+    <form th:method="patch" th:action="@{'/adminPage/approveUser/' + ${unapprovedUser.id}}">
+        <button type="submit">Approve</button>
+    </form>
+    <form th:method="delete" th:action="@{'/adminPage/unApproveUser/' + ${unapprovedUser.id}}">
+        <button type="submit">UnApprove</button>
+    </form>
+
+    <hr>
+</div>
+</body>
+</html>

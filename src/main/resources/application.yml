@@ -13,6 +13,4 @@ spring:
       database: postgresql
       database-platform: org.hibernate.dialect.PostgreSQLDialect
 server:
-  error:
-    whitelabel:
-      enabled: false
+  port: 8090

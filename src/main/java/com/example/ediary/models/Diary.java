@@ -21,6 +21,5 @@ public class Diary {
     private String name;
     private String surname;
     private int mark;
-    private String author;
 
 }
