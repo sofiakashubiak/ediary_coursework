@@ -3,9 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgba(233, 231, 239, 0.98);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .user-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .user-card p {
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .user-card form {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .user-card form button {
+            padding: 10px 20px;
+            background-color: #684caf;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .user-card hr {
+            margin-top: 20px;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
-<div th:each="unapprovedUser: ${unapprovedUsers}">
+<div th:each="unapprovedUser: ${unapprovedUsers}" class="user-card">
     <p th:text="${unapprovedUser.name}"></p>
     <p th:text="${unapprovedUser.team}"></p>
 
@@ -13,7 +54,7 @@
         <button type="submit">Approve</button>
     </form>
     <form th:method="delete" th:action="@{'/adminPage/unApproveUser/' + ${unapprovedUser.id}}">
-        <button type="submit">UnApprove</button>
+        <button type="submit">Unapprove</button>
     </form>
 
     <hr>

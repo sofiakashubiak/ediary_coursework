@@ -3,24 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgba(233, 231, 239, 0.98);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .register-container {
+            background-color: #fff;
+            padding: 80px 60px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 550px;
+            text-align: center;
+        }
+
+        .register-container h1 {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .register-container label {
+            font-weight: bold;
+            display: block;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .register-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .register-container button {
+            padding: 15px 65px;
+            background-color: #684caf;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
 </head>
 <body>
-<form method="post" th:object="${userRegisterResponse}">
-    <label for="username" >Enter username</label><br/>
-    <input id="username"  placeholder="Username" th:field="*{username}"><br/>
+<div class="register-container">
+    <h1>Register</h1>
+    <form method="post" th:object="${userRegisterResponse}">
+        <label for="username">Enter username</label>
+        <input id="username" placeholder="Username" th:field="*{username}">
 
-    <label for="password" >Enter password</label><br/>
-    <input type="password" id="password" placeholder="Password" th:field="*{password}"><br/>
+        <label for="name">Enter name</label>
+        <input id="name" placeholder="Name" th:field="*{name}">
 
-    <label for="name" >Enter name</label><br/>
-    <input id="name"  placeholder="Name" th:field="*{name}"><br/>
+        <label for="team">Enter group</label>
+        <input id="team" placeholder="Group" th:field="*{team}">
 
-    <label for="team" >Enter group</label><br/>
-    <input id="team"  placeholder="Group" th:field="*{team}"><br/>
+        <label for="password">Enter password</label>
+        <input type="password" id="password" placeholder="Password" th:field="*{password}">
 
-    <label for="passwordConfirmation" > Confirm password</label><br/>
-    <input type="password" id="passwordConfirmation" placeholder="passwordConfirmation" th:field="*{passwordConfirmation}"><br/>
-<button type="submit">register</button>
-</form>
+        <label for="passwordConfirmation">Confirm password</label>
+        <input type="password" id="passwordConfirmation" placeholder="Password Confirmation" th:field="*{passwordConfirmation}">
+
+        <button type="submit">Register</button>
+    </form>
+</div>
 </body>
 </html>
