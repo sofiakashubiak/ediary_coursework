@@ -7,13 +7,13 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: url('background.jpg') fixed;
             background-size: cover;
+            background-color: rgba(233, 231, 239, 0.98);
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 50px auto;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 5px;
@@ -22,6 +22,8 @@
 
         h1 {
             text-align: center;
+            color: #684caf;
+            margin-top: 0;
         }
 
         .diary-details {
@@ -33,6 +35,27 @@
 
         .diary-details p {
             margin: 0;
+            color: #684caf;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #684caf;
+            color: white;
+        }
+
+        .white-square {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -40,14 +63,36 @@
 <div class="container">
     <h1>Diary Details</h1>
     <div class="diary-details">
-        <p th:text="'Math Description: ' + ${diary.mathDescription}"></p>
-        <p th:text="'Math Score: ' + ${diary.mathScore}"></p>
-        <p th:text="'English Description: ' + ${diary.englishDescription}"></p>
-        <p th:text="'English Score: ' + ${diary.englishScore}"></p>
-        <p th:text="'Physics Description: ' + ${diary.physicsDescription}"></p>
-        <p th:text="'Physics Score: ' + ${diary.physicsScore}"></p>
-        <p th:text="'Programming Description: ' + ${diary.programmingDescription}"></p>
-        <p th:text="'Programming Score: ' + ${diary.programmingScore}"></p>
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Description</th>
+                <th>Score</th>
+            </tr>
+            <tr>
+                <td>Math</td>
+                <td th:text="${diary.mathDescription}"></td>
+                <td th:text="${diary.mathScore}"></td>
+            </tr>
+            <tr>
+                <td>English</td>
+                <td th:text="${diary.englishDescription}"></td>
+                <td th:text="${diary.englishScore}"></td>
+            </tr>
+            <tr>
+                <td>Physics</td>
+                <td th:text="${diary.physicsDescription}"></td>
+                <td th:text="${diary.physicsScore}"></td>
+            </tr>
+            <tr>
+                <td>Programming</td>
+                <td th:text="${diary.programmingDescription}"></td>
+                <td th:text="${diary.programmingScore}"></td>
+            </tr>
+        </table>
+        <div class="white-square">
+            <!-- Додайте вміст білого квадрата тут -->
+        </div>
     </div>
 </div>
 </body>

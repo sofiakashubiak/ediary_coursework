@@ -3,6 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Approved Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: rgba(233, 231, 239, 0.98);
+        }
+
+        h1 {
+            text-align: center;
+            color: #684caf;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        th {
+            background-color: #684caf;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
 <h1>Approved Users</h1>
@@ -17,7 +53,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="user : ${approvedUsers}">
+    <tr th:each="user, i : ${approvedUsers}" th:class="${i.odd} ? 'odd' : ''">
         <td th:text="${user.username}"></td>
         <td th:text="${user.name}"></td>
         <td th:text="${user.team}"></td>
