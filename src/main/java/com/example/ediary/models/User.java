@@ -25,10 +25,14 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private String name;
-    private String team;
+    private String teamName;
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "diary_id", referencedColumnName = "id")
+    private Diary diary;
 
     @Builder.Default private boolean approved = false;
 

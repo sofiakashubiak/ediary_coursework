@@ -1,5 +1,6 @@
 package com.example.ediary.init;
 
+import com.example.ediary.models.Diary;
 import com.example.ediary.models.Role;
 import com.example.ediary.models.User;
 import com.example.ediary.repository.UserRepository;

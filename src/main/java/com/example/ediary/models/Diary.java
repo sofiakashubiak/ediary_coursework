@@ -1,25 +1,38 @@
 package com.example.ediary.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Generated;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+
 
 @Data
 @NoArgsConstructor
 @Entity
 @AllArgsConstructor
+@Builder
 public class Diary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    private String surname;
-    private int mark;
+
+    private String mathDescription;
+    private int mathScore;
+
+
+    private String englishDescription;
+    private int englishScore;
+
+
+    private String physicsDescription;
+    private int physicsScore;
+
+
+    private String programmingDescription;
+    private int programmingScore;
+
+    @OneToOne(mappedBy = "diary")
+    @ToString.Exclude
+    private User user;
 
 }

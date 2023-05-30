@@ -46,7 +46,7 @@ public class WebSecurityConfig {
                                     .contains(new SimpleGrantedAuthority(Role.TEACHER.toString()))) {
                                 response.sendRedirect("/adminPage");
                             } else {
-                                response.sendRedirect("/");
+                                response.sendRedirect("/diary");
                             }
                         }))
                 .logout((logout) -> logout

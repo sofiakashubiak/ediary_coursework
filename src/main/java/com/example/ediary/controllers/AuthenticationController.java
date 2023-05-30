@@ -51,15 +51,11 @@ public class AuthenticationController {
     public String processRegister(@ModelAttribute @Valid UserRegisterResponse userRegisterResponse,
                                   Errors errors, Model model) {
 
-        System.out.println("\nbefore validations\n");
-
         if (!userRegisterResponse.getPassword().equals(userRegisterResponse.getPasswordConfirmation())) {
             model.addAttribute("passwordsNotEqual", "Passwords are not equal");
-            System.out.println("\nfirst condition\n");
         }
         if (userRepository.findByUsername(userRegisterResponse.getUsername()).orElse(null) != null) {
             model.addAttribute("usernameIsTaken", "Username is already taken");
-            System.out.println("\nsecond condition\n");
         }
         if (errors.hasErrors()
                 || model.containsAttribute("passwordsNotEqual")
@@ -69,19 +65,14 @@ public class AuthenticationController {
             return "register";
         }
 
-
-        System.out.println("\nafter validations\n");
-
         var user = User.builder()
                 .name(userRegisterResponse.getName())
                 .username(userRegisterResponse.getUsername())
                 .password(encoder.encode(userRegisterResponse.getPassword()))
                 .role(Role.STUDENT)
-                .team(userRegisterResponse.getTeam())
+                .teamName(userRegisterResponse.getTeam())
                 .build();
         userRepository.save(user);
-
-        System.out.println("\nafter saving\n");
 
         return "redirect:/login";
     }
