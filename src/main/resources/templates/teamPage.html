@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teams Page</title>
+</head>
+<body>
+<h1>Teams</h1>
+<div th:each="team: ${teams}">
+    <p th:text="${team.name}"></p>
+    <div th:each="student: ${team.users}">
+        <a th:text="${student.name}" th:href="@{'/adminPage/studentDiaryById/' + ${student.id}}"></a>
+    </div>
+</div>
+
+</body>
+</html>

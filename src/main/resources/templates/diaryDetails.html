@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diary Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('background.jpg') fixed;
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .diary-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .diary-details p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Diary Details</h1>
+    <div class="diary-details">
+        <p th:text="'Math Description: ' + ${diary.mathDescription}"></p>
+        <p th:text="'Math Score: ' + ${diary.mathScore}"></p>
+        <p th:text="'English Description: ' + ${diary.englishDescription}"></p>
+        <p th:text="'English Score: ' + ${diary.englishScore}"></p>
+        <p th:text="'Physics Description: ' + ${diary.physicsDescription}"></p>
+        <p th:text="'Physics Score: ' + ${diary.physicsScore}"></p>
+        <p th:text="'Programming Description: ' + ${diary.programmingDescription}"></p>
+        <p th:text="'Programming Score: ' + ${diary.programmingScore}"></p>
+    </div>
+</div>
+</body>
+</html>

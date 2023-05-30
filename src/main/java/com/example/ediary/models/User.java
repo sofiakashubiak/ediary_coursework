@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -14,6 +15,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
+
 public class User implements UserDetails {
 
     @Id
@@ -29,6 +31,10 @@ public class User implements UserDetails {
     private Role role;
 
     @Builder.Default private boolean approved = false;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "team_id")
+    @Builder.Default private Team team = null;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

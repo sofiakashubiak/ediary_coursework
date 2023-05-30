@@ -29,7 +29,7 @@ public class AdminInitializer implements CommandLineRunner {
                     .name("teacher")
                     .username("teacher")
                     .password(passwordEncoder.encode("password"))
-                    .team("teacher")
+                    .teamName("teacher")
                     .role(Role.TEACHER)
                     .approved(true)
                     .build();
