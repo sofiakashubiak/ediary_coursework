@@ -68,30 +68,37 @@
                 <th>Subject</th>
                 <th>Description</th>
                 <th>Score</th>
-            </tr>
-            <tr>
-                <td>Math</td>
-                <td th:text="${diary.mathDescription}"></td>
-                <td th:text="${diary.mathScore}"></td>
+                <th>Was Present</th>
             </tr>
             <tr>
                 <td>English</td>
                 <td th:text="${diary.englishDescription}"></td>
                 <td th:text="${diary.englishScore}"></td>
+                <td>
+                    <span th:if="${diary.wasPresentOnEnglish}">was present</span>
+                    <span th:unless="${diary.wasPresentOnEnglish}">was absent</span>
+                </td>
             </tr>
             <tr>
                 <td>Physics</td>
                 <td th:text="${diary.physicsDescription}"></td>
                 <td th:text="${diary.physicsScore}"></td>
+                <td>
+                    <span th:if="${diary.wasPresentOnPhysics}">was present</span>
+                    <span th:unless="${diary.wasPresentOnPhysics}">was absent</span>
+                </td>
             </tr>
             <tr>
                 <td>Programming</td>
                 <td th:text="${diary.programmingDescription}"></td>
                 <td th:text="${diary.programmingScore}"></td>
+                <td>
+                    <span th:if="${diary.wasPresentOnProgramming}">was present</span>
+                    <span th:unless="${diary.wasPresentOnProgramming}">was absent</span>
+                </td>
             </tr>
         </table>
         <div class="white-square">
-            <!-- Додайте вміст білого квадрата тут -->
         </div>
     </div>
 </div>
