@@ -54,6 +54,18 @@
             display: block;
             margin: 20px auto;
         }
+
+        .validation-error-wrap {
+            color: #ff0000;
+            text-align: center;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .validation-error {
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
@@ -62,18 +74,36 @@
     <form method="post" th:object="${userRegisterResponse}">
         <label for="username">Enter username</label>
         <input id="username" placeholder="Username" th:field="*{username}">
+        <div class="validation-error-wrap">
+            <span class="validation-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+            <span class="validation-error" th:if="${usernameIsTaken != null}" th:text="${usernameIsTaken}"></span>
+        </div>
 
         <label for="name">Enter name</label>
         <input id="name" placeholder="Name" th:field="*{name}">
+        <div class="validation-error-wrap">
+            <span class="validation-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
 
         <label for="team">Enter group</label>
         <input id="team" placeholder="Group" th:field="*{team}">
+        <div class="validation-error-wrap">
+            <span class="validation-error" th:if="${#fields.hasErrors('team')}" th:errors="*{team}"></span>
+        </div>
 
         <label for="password">Enter password</label>
         <input type="password" id="password" placeholder="Password" th:field="*{password}">
+        <div class="validation-error-wrap">
+            <span class="validation-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            <span class="validation-error" th:if="${passwordsNotEqual != null}" th:text="${passwordsNotEqual}"></span>
+        </div>
 
         <label for="passwordConfirmation">Confirm password</label>
         <input type="password" id="passwordConfirmation" placeholder="Password Confirmation" th:field="*{passwordConfirmation}">
+        <div class="validation-error-wrap">
+            <span class="validation-error" th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}"></span>
+            <span class="validation-error" th:if="${passwordsNotEqual != null}" th:text="${passwordsNotEqual}"></span>
+        </div>
 
         <button type="submit">Register</button>
     </form>

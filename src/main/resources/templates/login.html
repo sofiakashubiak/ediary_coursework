@@ -22,6 +22,9 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 500px;
+            margin: 0 auto;
+            position: relative;
+            margin-top: -120px;
         }
 
         .login-container h1 {
@@ -51,16 +54,29 @@
             border: none;
             border-radius: 3px;
             cursor: pointer;
+            margin-bottom: -100px; /* Додано margin-bottom для відступу від червоного тексту */
         }
 
         .login-container .create-account {
-            text-align: left; /* Змінено на text-align: left */
+            text-align: left;
             margin-top: 10px;
         }
 
         .login-container .create-account a {
             color: #684caf;
             text-decoration: none;
+        }
+
+        .validation-error-wrap {
+            position: absolute;
+            top: calc(85% + 10px); /* Додано відступ від нижнього краю кнопки */
+            left: 0;
+            width: 100%;
+        }
+
+        .validation-error {
+            font-weight: normal;
+            color: red;
         }
     </style>
 </head>
@@ -79,6 +95,10 @@
         </div>
 
         <button type="submit">Login</button>
+
+        <div class="validation-error-wrap" th:if="${param.error}">
+            <div class="validation-error">Incorrect login or password</div>
+        </div>
     </form>
 </div>
 </body>
