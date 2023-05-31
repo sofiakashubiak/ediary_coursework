@@ -1,6 +1,7 @@
 package com.example.ediary.controllers;
 
 import com.example.ediary.models.Diary;
+import com.example.ediary.models.DiaryEditFormResponse;
 import com.example.ediary.models.Team;
 import com.example.ediary.models.User;
 import com.example.ediary.repository.DiaryRepository;
@@ -58,10 +59,53 @@ public class AdminController {
     @GetMapping("/studentDiaryById/{id}")
     public String studentDiaryById(@PathVariable("id") Long id,
                                    Model model) {
+        Diary diary = userRepository.findById(id).get().getDiary();
+        System.out.println("\n" + diary + "\n");
 
-        model.addAttribute("diary",
-                userRepository.findById(id).get().getDiary());
-        return "diaryDetails";
+        DiaryEditFormResponse diaryEditFormResponse = new DiaryEditFormResponse(
+                diary.getEnglishDescription(),
+                diary.getEnglishScore(),
+                diary.isWasPresentOnEnglish(),
+                diary.getPhysicsDescription(),
+                diary.getPhysicsScore(),
+                diary.isWasPresentOnPhysics(),
+                diary.getProgrammingDescription(),
+                diary.getProgrammingScore(),
+                diary.isWasPresentOnProgramming()
+        );
+
+
+        model.addAttribute("diaryEditFormResponse", diaryEditFormResponse);
+
+        return "editDiary";
+    }
+
+    @PostMapping("/studentDiaryById/{id}")
+    public String processStudentDiaryEditing(@PathVariable("id") Long id,
+                                                @ModelAttribute("diaryEditFormResponse")
+                                                 Diary editedDiary) {
+
+        User user = userRepository.findById(id).get();
+
+        Diary diary = user.getDiary();
+
+        diary.setEnglishScore(editedDiary.getEnglishScore());
+        diary.setPhysicsScore(editedDiary.getPhysicsScore());
+        diary.setProgrammingScore(editedDiary.getProgrammingScore());
+
+        diary.setEnglishDescription(editedDiary.getEnglishDescription());
+        diary.setPhysicsDescription(editedDiary.getPhysicsDescription());
+        diary.setProgrammingDescription(editedDiary.getProgrammingDescription());
+
+        diary.setWasPresentOnPhysics(editedDiary.isWasPresentOnPhysics());
+        diary.setWasPresentOnProgramming(editedDiary.isWasPresentOnProgramming());
+        diary.setWasPresentOnEnglish(editedDiary.isWasPresentOnEnglish());
+
+        user.setDiary(diary);
+        userRepository.save(user);
+
+        return "redirect:/adminPage/teams";
+
     }
 
     @PatchMapping("approveUser/{id}")
