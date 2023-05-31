@@ -3,48 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <title>Diary Edit Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+        }
+
+        .form-column {
+            display: grid;
+            grid-gap: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-row label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-row input[type="text"],
+        .form-row input[type="number"],
+        .form-row select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        .form-row--button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            grid-column: 1 / span 3;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #684caf;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
 <h1>Diary Edit Form</h1>
 
 <form th:object="${diaryEditFormResponse}" method="POST">
-    <label for="englishDescription">English Description</label>
-    <input type="text" id="englishDescription"  th:field="*{englishDescription}"><br/>
+    <div class="form-column">
+        <div class="form-row">
+            <label for="englishDescription">English Description</label>
+            <input type="text" id="englishDescription" th:field="*{englishDescription}">
+        </div>
 
-    <label for="englishScore">English Score</label>
-    <input type="number" id="englishScore"  th:field="*{englishScore}"><br/>
+        <div class="form-row">
+            <label for="englishScore">English Score</label>
+            <input type="number" id="englishScore" th:field="*{englishScore}" min="1" max="12">
+        </div>
 
-    <label for="englishWasPresent">Was present on English</label>
-    <select id="englishWasPresent" th:field="*{wasPresentOnEnglish}">
-        <option value="true">Was on lesson</option>
-        <option value="false">Absent</option>
-    </select><br/>
+        <div class="form-row">
+            <label for="englishWasPresent">Was present on English</label>
+            <select id="englishWasPresent" th:field="*{wasPresentOnEnglish}">
+                <option value="true">Was on lesson</option>
+                <option value="false">Absent</option>
+            </select>
+        </div>
+    </div>
 
-    <label for="physicsDescription">Physics Description</label>
-    <input type="text" id="physicsDescription"  th:field="*{physicsDescription}"><br/>
+    <div class="form-column">
+        <div class="form-row">
+            <label for="physicsDescription">Physics Description</label>
+            <input type="text" id="physicsDescription" th:field="*{physicsDescription}">
+        </div>
 
-    <label for="physicsScore">Physics Score</label>
-    <input type="number" id="physicsScore"  th:field="*{physicsScore}"><br/>
+        <div class="form-row">
+            <label for="physicsScore">Physics Score</label>
+            <input type="number" id="physicsScore" th:field="*{physicsScore}" min="1" max="12">
+        </div>
 
-    <label for="physicsWasPresent">Was present on physics</label>
-    <select id="physicsWasPresent" th:field="*{wasPresentOnPhysics}">
-        <option value="true">Was on lesson</option>
-        <option value="false">Absent</option>
-    </select><br/>
+        <div class="form-row">
+            <label for="physicsWasPresent">Was present on physics</label>
+            <select id="physicsWasPresent" th:field="*{wasPresentOnPhysics}">
+                <option value="true">Was on lesson</option>
+                <option value="false">Absent</option>
+            </select>
+        </div>
+    </div>
 
-    <label for="programmingDescription">Programming Description</label>
-    <input type="text" id="programmingDescription"  th:field="*{programmingDescription}"><br/>
+    <div class="form-column">
+        <div class="form-row">
+            <label for="programmingDescription">Programming Description</label>
+            <input type="text" id="programmingDescription" th:field="*{programmingDescription}">
+        </div>
 
-    <label for="programmingScore">Programming Score</label>
-    <input type="number" id="programmingScore"  th:field="*{programmingScore}"><br/>
+        <div class="form-row">
+            <label for="programmingScore">Programming Score</label>
+            <input type="number" id="programmingScore" th:field="*{programmingScore}" min="1" max="12">
+        </div>
 
-    <label for="programmingWasPresent">Was present on programming</label>
-    <select id="programmingWasPresent" th:field="*{wasPresentOnProgramming}">
-        <option value="true">Was on lesson</option>
-        <option value="false">Absent</option>
-    </select><br/>
+        <div class="form-row">
+            <label for="programmingWasPresent">Was present on programming</label>
+            <select id="programmingWasPresent" th:field="*{wasPresentOnProgramming}">
+                <option value="true">Was on lesson</option>
+                <option value="false">Absent</option>
+            </select>
+        </div>
+    </div>
 
-    <button type="submit">Save</button>
+    <div class="form-row form-row--button">
+        <button type="submit">Save</button>
+    </div>
 </form>
 </body>
 </html>
