@@ -43,9 +43,34 @@
             border: none;
             border-top: 1px solid #ccc;
         }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .button-container .button {
+            padding: 10px 20px;
+            background-color: #684caf;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .button-container .button:hover {
+            background-color: #563d80;
+        }
     </style>
 </head>
 <body>
+<div class="button-container">
+    <a class="button" href="/adminPage/approvedUsers">See approved users</a>
+    <a class="button" href="/adminPage/teams">Teams</a>
+</div>
+
 <div th:each="unapprovedUser: ${unapprovedUsers}" class="user-card">
     <p th:text="${unapprovedUser.name}"></p>
     <p th:text="${unapprovedUser.team}"></p>
