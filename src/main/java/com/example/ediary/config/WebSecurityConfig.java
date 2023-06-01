@@ -31,13 +31,14 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+
                 .authorizeRequests((requests) -> requests
-                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .antMatchers("/adminPage/**").hasAuthority(Role.TEACHER.toString())
                         .antMatchers("/login/**", "/register/**").permitAll()
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .anyRequest().authenticated()
                 )
+
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
@@ -49,14 +50,17 @@ public class WebSecurityConfig {
                                 response.sendRedirect("/diary");
                             }
                         }))
+
                 .logout((logout) -> logout
                         .permitAll()
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "POST"))
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .deleteCookies("JSESSIONID")
-                        .logoutSuccessUrl("/login")
-                );
+                        .logoutSuccessUrl("/login"))
+
+        .csrf().disable();
+
         return http.build();
     }
 
