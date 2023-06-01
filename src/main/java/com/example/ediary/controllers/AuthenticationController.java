@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class AuthenticationController {
@@ -43,6 +45,12 @@ public class AuthenticationController {
 
     @GetMapping("/register")
     public String register(Model model) {
+
+        List<String> teamsNames = new ArrayList<>(List.of(
+                "IA-21", "IA-22", "IA-23", "IA-24"
+        ));
+
+        model.addAttribute("teamsNames", teamsNames);
         model.addAttribute("userRegisterResponse", userRegisterResponse);
         return "register";
     }
