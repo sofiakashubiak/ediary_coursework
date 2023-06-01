@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
@@ -36,7 +36,8 @@
             margin-bottom: 10px;
         }
 
-        .register-container input {
+        .register-container input,
+        .register-container select {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -90,8 +91,13 @@
             <span class="validation-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
         </div>
 
-        <label for="team">Enter group</label>
-        <input id="team" placeholder="Group" th:field="*{team}">
+        <label for="team">Select group</label>
+        <div class="select-container">
+            <select id="team" th:field="*{team}">
+                <option value="">-- Select group --</option>
+                <option th:each="team : ${teamsNames}" th:value="${team}" th:text="${team}"></option>
+            </select>
+        </div>
         <div class="validation-error-wrap">
             <span class="validation-error" th:if="${#fields.hasErrors('team')}" th:errors="*{team}"></span>
         </div>
